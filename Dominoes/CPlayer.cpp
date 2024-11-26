@@ -15,7 +15,20 @@ void CPlayer::displayHand() {
 
 std::pair<int, int> CPlayer::playDomino(int index) {
     std::lock_guard<std::mutex> lock(handMutex);
-    auto domino = hand[index];  // Copy the domino instead of returning a reference
+
+    // Check if the index is within bounds
+    if (index < 0 || index >= hand.size()) {
+        std::cerr << "Error: Index out of range.\n";
+        return std::pair<int, int>{-1, -1};  // Return a default value indicating an error
+    }
+
+    // Get the domino to be played
+    auto domino = hand[index];
+
+    // Erase the selected domino
     hand.erase(hand.begin() + index);
-    return domino;  // Return the copied domino
+
+    // Return the selected domino
+    return domino;
 }
+

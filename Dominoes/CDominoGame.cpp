@@ -46,7 +46,7 @@ void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
 
     // If the board is empty, allow the first domino to be placed freely
     if (table.leftValue() == -1 && table.rightValue() == -1) {
-        table.addDomino(domino);  // Place the first domino on the board
+        table.addRight(domino);  // Place the first domino on the board
         std::cout << "First domino placed: [" << domino.first << "|" << domino.second << "]" << std::endl;
     }
     else {
@@ -54,13 +54,13 @@ void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
         bool canPlace = false;
         if (domino.first == table.leftValue() || domino.second == table.leftValue()) {
             // Place the domino on the left end
-            table.addDomino(domino);
+            table.addLeft(domino);
             canPlace = true;
             std::cout << "Domino placed at left: [" << domino.first << "|" << domino.second << "]" << std::endl;
         }
         else if (domino.first == table.rightValue() || domino.second == table.rightValue()) {
             // Place the domino on the right end
-            table.addDomino(domino);
+            table.addRight(domino);
             canPlace = true;
             std::cout << "Domino placed at right: [" << domino.first << "|" << domino.second << "]" << std::endl;
         }
