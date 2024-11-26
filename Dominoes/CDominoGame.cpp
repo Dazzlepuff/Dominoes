@@ -104,6 +104,13 @@ void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
         }
     }
 
+    // Check if the player has no dominoes left
+    if (player.hand.empty()) {
+        std::cout << (isPlayer1 ? "Player 1 wins!" : "Player 2 wins!") << std::endl;
+        gameRunning = false;  // Stop the game
+        return;
+    }
+
     std::cout << (isPlayer1 ? "Player 1's turn over" : "Player 2's turn over") << std::endl;
 }
 
