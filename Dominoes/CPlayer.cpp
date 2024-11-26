@@ -5,7 +5,7 @@ void CPlayer::addDomino(const std::pair<int, int>& domino) {
     hand.push_back(domino);
 }
 
-void CPlayer::displayHand() const {
+void CPlayer::displayHand() {
     std::lock_guard<std::mutex> lock(handMutex);
     for (size_t i = 0; i < hand.size(); ++i) {
         std::cout << i + 1 << ": [" << hand[i].first << "|" << hand[i].second << "] ";
@@ -15,7 +15,7 @@ void CPlayer::displayHand() const {
 
 std::pair<int, int> CPlayer::playDomino(int index) {
     std::lock_guard<std::mutex> lock(handMutex);
-    auto domino = hand[index];
+    auto domino = hand[index];  // Copy the domino instead of returning a reference
     hand.erase(hand.begin() + index);
-    return domino;
+    return domino;  // Return the copied domino
 }

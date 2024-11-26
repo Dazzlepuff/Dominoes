@@ -5,7 +5,7 @@ void CTable::addDomino(const std::pair<int, int>& domino) {
     board.push_back(domino);
 }
 
-void CTable::display() const {
+void CTable::display() {
     std::lock_guard<std::mutex> lock(boardMutex);
     std::cout << "Board: ";
     for (const auto& domino : board) {

@@ -30,6 +30,9 @@
     <ClCompile Include="CTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CDominoGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDominoes.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDominoGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

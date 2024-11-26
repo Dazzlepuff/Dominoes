@@ -13,7 +13,7 @@ private:
 public:
     void addDomino(const std::pair<int, int>& domino);
 
-    void display() const;
+    void display() ;
 
     int leftValue() const;
 

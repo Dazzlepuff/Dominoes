@@ -12,7 +12,7 @@ public:
 
     void addDomino(const std::pair<int, int>& domino);
 
-    void displayHand() const;
+    void displayHand();
 
     std::pair<int, int> playDomino(int index);
 };

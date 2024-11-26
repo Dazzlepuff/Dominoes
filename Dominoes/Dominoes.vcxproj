@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CDominoGame.cpp" />
     <ClCompile Include="CRandom.cpp" />
     <ClCompile Include="CDominoes.cpp" />
     <ClCompile Include="CTable.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="CPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CDominoGame.h" />
     <ClInclude Include="CRandom.h" />
     <ClInclude Include="CDominoes.h" />
     <ClInclude Include="CTable.h" />
