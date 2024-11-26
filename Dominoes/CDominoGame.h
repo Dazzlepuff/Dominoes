@@ -9,18 +9,18 @@
 #include <mutex>
 
 class CDominoGame {
+private:
+    bool gameRunning;
+    bool player1Turn;
+    CPlayer player1, player2;
+    CTable table;
+    std::vector<std::pair<int, int>> remainingDeck;
+    std::mutex mtx;
+    int dominoesPlaced = 0; // Counter for placed dominoes
 public:
     CDominoGame();
     void startGame();
     void playerTurn(CPlayer& player, bool isPlayer1);
-    bool gameRunning;
-    bool player1Turn; // Flag to control whose turn it is
-
-private:
-    CTable table;
-    CPlayer player1, player2;
-    std::mutex mtx;  // To ensure only one player can play at a time
-    std::vector<std::pair<int, int>> remainingDeck;
 };
 
 #endif
