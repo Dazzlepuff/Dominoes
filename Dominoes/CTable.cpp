@@ -1,3 +1,12 @@
+/*
+ * File: CTable.cpp
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #include "CTable.h"
 
 // Flips a domino by swapping its values

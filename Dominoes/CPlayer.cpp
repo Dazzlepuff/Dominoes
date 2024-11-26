@@ -1,3 +1,12 @@
+/*
+ * File: CPlayer.cpp
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #include "CPlayer.h"
 
 void CPlayer::addDomino(const std::pair<int, int>& domino) {

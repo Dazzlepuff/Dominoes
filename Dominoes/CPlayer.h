@@ -1,3 +1,12 @@
+/*
+ * File: CPlayer.h
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #ifndef CPLAYER_H
 #define CPLAYER_H
 

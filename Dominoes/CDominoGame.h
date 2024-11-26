@@ -1,4 +1,12 @@
-// CDominoGame.h
+/*
+ * File: CDominoGame.h
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #ifndef CDOMINOGAME_H
 #define CDOMINOGAME_H
 

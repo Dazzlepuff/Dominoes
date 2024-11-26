@@ -1,3 +1,12 @@
+/*
+ * File: CRandom.h
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #ifndef CRANDOM_H
 #define CRANDOM_H
 

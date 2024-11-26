@@ -1,4 +1,12 @@
-// CDominoGame.cpp
+/*
+ * File: CDominoGame.cpp
+ * Author: Owen N Chilson
+ * Created: 2024-10-26
+ *
+ * License: MIT
+ *
+ */
+
 #include "CDominoGame.h"
 #include "CRandom.h"
 #include <iostream>
@@ -11,7 +19,7 @@ CDominoGame::CDominoGame() : gameRunning(true) {
     player1Turn = randomGen.randomBool();
 
     // Deal dominoes to players
-    for (int i = 0; i < 1; ++i) {
+    for (int i = 0; i < 10; ++i) {
         player1.addDomino(deck.dominoes.back());
         deck.dominoes.pop_back();
         player2.addDomino(deck.dominoes.back());
@@ -36,7 +44,7 @@ void CDominoGame::startGame() {
 void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
     std::lock_guard<std::mutex> lock(mtx);
 
-    std::cout << (isPlayer1 ? "Player 1's turn:" : "Player 2's turn:") << std::endl;
+    std::cout << std::endl << (isPlayer1 ? "Player 1's turn:" : "Player 2's turn:") << std::endl;
     player.displayHand();
     table.display();
 
