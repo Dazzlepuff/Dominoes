@@ -1,17 +1,24 @@
 // CDominoGame.cpp
 #include "CDominoGame.h"
+#include "CRandom.h"
 #include <iostream>
 
-CDominoGame::CDominoGame() : gameRunning(true), player1Turn(true) {
+CDominoGame::CDominoGame() : gameRunning(true) {
     CDominoes deck;
+    CRandom randomGen;
+
+    // Determine the starting player randomly
+    player1Turn = randomGen.randomBool();
 
     // Deal dominoes to players
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 10; ++i) {
         player1.addDomino(deck.dominoes.back());
         deck.dominoes.pop_back();
         player2.addDomino(deck.dominoes.back());
         deck.dominoes.pop_back();
     }
+
+    remainingDeck = deck.dominoes;
 }
 
 void CDominoGame::startGame() {
@@ -29,14 +36,29 @@ void CDominoGame::startGame() {
 void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
     std::lock_guard<std::mutex> lock(mtx);
 
-    std::cout << (isPlayer1 ? "Player 1's turn:" : "Player 2's turn:") << std::endl;
+    std::cout << std::endl << (isPlayer1 ? "Player 1's turn:" : "Player 2's turn:") << std::endl;
     player.displayHand();
     table.display();
 
     int choice;
-    std::cout << "Select domino to play (1-" << player.hand.size() << "): ";
+    std::cout << "Select domino to play (1-" << player.hand.size() << " or 0 to draw): ";
     std::cin >> choice;
 
+    // Draw a card if the player chooses 0
+    if (choice == 0) {
+        if (!remainingDeck.empty()) {
+            auto drawnCard = remainingDeck.back();
+            remainingDeck.pop_back();
+            player.addDomino(drawnCard);
+            std::cout << "You drew a domino: [" << drawnCard.first << "|" << drawnCard.second << "]" << std::endl;
+        }
+        else {
+            std::cout << "No more dominoes to draw." << std::endl;
+        }
+        return;  // End the turn after drawing
+    }
+
+    // Validate choice
     if (choice < 1 || choice > player.hand.size()) {
         std::cout << "Invalid choice. Try again." << std::endl;
         return;  // Return to allow the player to choose again
@@ -66,13 +88,22 @@ void CDominoGame::playerTurn(CPlayer& player, bool isPlayer1) {
         }
 
         if (!canPlace) {
-            std::cout << "Cannot place this domino. Try again." << std::endl;
-            return;  // Return if the domino can't be placed
+            std::cout << "Cannot place this domino. Drawing a card..." << std::endl;
+
+            // Automatically draw if the chosen domino can't be placed
+            if (!remainingDeck.empty()) {
+                auto drawnCard = remainingDeck.back();
+                remainingDeck.pop_back();
+                player.addDomino(drawnCard);
+                std::cout << "You drew a domino: [" << drawnCard.first << "|" << drawnCard.second << "]" << std::endl;
+            }
+            else {
+                std::cout << "No more dominoes to draw." << std::endl;
+            }
+            return;  // End the turn after drawing
         }
     }
 
-    // Optional: Check if game is over (you can implement end condition logic)
-    // For now, the game continues unless you add some logic to stop it.
-
     std::cout << (isPlayer1 ? "Player 1's turn over" : "Player 2's turn over") << std::endl;
 }
+

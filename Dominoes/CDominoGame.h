@@ -20,6 +20,7 @@ private:
     CTable table;
     CPlayer player1, player2;
     std::mutex mtx;  // To ensure only one player can play at a time
+    std::vector<std::pair<int, int>> remainingDeck;
 };
 
 #endif
